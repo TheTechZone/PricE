@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                     if (mEmailField.getText().toString().equals("ghita@pentalog.ro" )&& mPasswordField.getText().toString().equals("123456789"))
                     {
                         Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this,GpsTest.class);
+                        startActivity(intent);
                     }
                     else
                     {

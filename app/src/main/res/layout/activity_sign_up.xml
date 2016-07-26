@@ -20,7 +20,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="100dp"
         android:textSize="40sp"/>
 
     <EditText
@@ -30,12 +30,11 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/emailEditText"
-        android:layout_marginTop="49dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:singleLine="true"
-        android:hint="Email"/>
+        android:hint="Email"
+        android:layout_above="@+id/pass1EditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
     <EditText
         style="@style/editText"
@@ -45,10 +44,9 @@
         android:ems="10"
         android:id="@+id/pass1EditText"
         android:hint="Password"
-        android:layout_marginTop="49dp"
-        android:layout_below="@+id/emailEditText"
-        android:layout_alignLeft="@+id/emailEditText"
-        android:layout_alignStart="@+id/emailEditText"/>
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <EditText
         style="@style/editText"
@@ -58,10 +56,9 @@
         android:ems="10"
         android:id="@+id/pass2EditText"
         android:hint="Confirm Password"
-        android:layout_marginTop="45dp"
         android:layout_below="@+id/pass1EditText"
-        android:layout_alignLeft="@+id/pass1EditText"
-        android:layout_alignStart="@+id/pass1EditText"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <Button
         style="@style/formButton"
