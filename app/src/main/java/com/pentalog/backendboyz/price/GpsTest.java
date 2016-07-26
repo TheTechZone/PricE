@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -27,6 +28,11 @@ public class GpsTest extends AppCompatActivity {
     private LocationManager mLocationManager;
     private double mLatitude,mLongitude;
     private TextView mLocationLabel;
+    private TextView mCityLabel;
+
+    private  String mCity;
+
+    String jsonData;
 
     private static final String TAG = "LOCATION STUFF PLZ WORK";
 
@@ -35,7 +41,9 @@ public class GpsTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps_test);
 
+
         mLocationLabel = (TextView) findViewById(R.id.locationLabel);
+        mCityLabel = (TextView) findViewById(R.id.cityLabel);
 
         mLocationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 
@@ -51,8 +59,8 @@ public class GpsTest extends AppCompatActivity {
                 mLocationLabel.setText(mLatitude+" , "+mLongitude);
                 String mApiUrl=" http://nominatim.openstreetmap.org/reverse?format=json&lat=" +mLatitude+ "&lon=" +mLongitude;
 
-                
-/*
+
+//
                 if(isNetworkAvailable()) {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
@@ -72,15 +80,30 @@ public class GpsTest extends AppCompatActivity {
                                 String jsonData = response.body().string();
                                 if (response.isSuccessful()){
                                     Log.d(TAG,jsonData);
+                                    mCity = getCurrentCity(jsonData);
+                                    Log.d(TAG,mCity);
+
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mCityLabel.setText(mCity);
+                                        }
+                                    });
+
+
                                 }
                                 else{
-
+                                    alertUserAboutError();
                                 }
 
                             } catch (IOException e) {
                                 Log.e(TAG, "Exception Caught:", e);
-
                             }
+                              catch (JSONException e){
+                                Log.e(TAG, "Exception Caught:", e);
+                              }
+
                         }
                     });
 
@@ -89,7 +112,7 @@ public class GpsTest extends AppCompatActivity {
                 else {
                     Toast.makeText(GpsTest.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
                 }
-*/
+//
             }
 
             @Override
@@ -110,6 +133,21 @@ public class GpsTest extends AppCompatActivity {
         };
         mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
+
+    }
+
+    private String getCurrentCity(String jsonData) throws JSONException{
+        JSONObject response = new JSONObject(jsonData);
+        JSONObject address = response.getJSONObject("address");
+        String mCity;
+
+        if (address.has("city")){
+            mCity = address.getString("city");
+        }
+        else {
+            mCity = address.getString("town");
+        }
+        return mCity;
     }
 
     private boolean isNetworkAvailable() {
@@ -121,5 +159,10 @@ public class GpsTest extends AppCompatActivity {
             isAvailable = true;
         }
         return  isAvailable;
+    }
+
+    private void alertUserAboutError() {
+        AlertDialogFragment dialog = new AlertDialogFragment();
+        dialog.show(getFragmentManager(),"error_dialog");
     }
 }
