@@ -50,6 +50,8 @@ public class GpsTest extends AppCompatActivity {
                 mLongitude = location.getLongitude();
                 mLocationLabel.setText(mLatitude+" , "+mLongitude);
                 String mApiUrl=" http://nominatim.openstreetmap.org/reverse?format=json&lat=" +mLatitude+ "&lon=" +mLongitude;
+
+                
 /*
                 if(isNetworkAvailable()) {
                     OkHttpClient client = new OkHttpClient();
