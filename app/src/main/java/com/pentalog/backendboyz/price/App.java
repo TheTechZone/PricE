@@ -24,7 +24,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class GpsTest extends AppCompatActivity {
+public class App extends AppCompatActivity {
     private LocationManager mLocationManager;
     private double mLatitude,mLongitude;
     private TextView mLocationLabel;
@@ -39,7 +39,7 @@ public class GpsTest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gps_test);
+        setContentView(R.layout.activity_app);
 
 
         mLocationLabel = (TextView) findViewById(R.id.locationLabel);
@@ -110,7 +110,7 @@ public class GpsTest extends AppCompatActivity {
                 }
 
                 else {
-                    Toast.makeText(GpsTest.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
+                    Toast.makeText(App.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
                 }
 //
             }

@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".SignUp">
         </activity>
-        <activity android:name=".GpsTest">
+        <activity android:name=".App"
+            android:theme="@style/CustomTheme">
         </activity>
     </application>
 

@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
         mPass1Field.addTextChangedListener(mPass1FieldWatcher);
         mPass2Field.addTextChangedListener(mPass2FieldWatcher);
 
-        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+       /* mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mEmailField.getError() == null && mPass2Field.getError() == null && mPass1Field.getError() == null){
@@ -43,7 +43,9 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(SignUp.this, "FAIL", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
+        */
     }
 
     private TextWatcher mEmailFieldWatcher = new TextWatcher() {
@@ -108,4 +110,20 @@ public class SignUp extends AppCompatActivity {
 
         }
     };
+
+    public void OnRegister(View view){
+        if (mEmailField.getError() == null && mPass2Field.getError() == null && mPass1Field.getError() == null
+                && !mEmailField.getText().toString().equals("") && !mPass1Field.getText().toString().equals("")){
+            //Toast.makeText(SignUp.this, "Account Created.", Toast.LENGTH_SHORT).show();
+            String email = mEmailField.getText().toString();
+            String password = mPass1Field.getText().toString();
+            String type = "register";
+            BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+            backgroundWorker.execute(type, email, password);
+
+        }
+        else {
+            Toast.makeText(SignUp.this, "FAIL", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

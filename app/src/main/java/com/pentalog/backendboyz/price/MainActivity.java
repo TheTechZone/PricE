@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         mEmailField.addTextChangedListener(mEmailFieldWatcher);
         mPasswordField.addTextChangedListener(mPasswordFieldWatcher);
-
+/*
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
                     if (mEmailField.getText().toString().equals("ghita@pentalog.ro" )&& mPasswordField.getText().toString().equals("123456789"))
                     {
                         Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(MainActivity.this,GpsTest.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(MainActivity.this,App.class);
+                        //startActivity(intent);
+
                     }
                     else
                     {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+*/
         mSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (!isValidEmail(mEmailField.getText().toString())){
+            if (!isValidEmail(mEmailField.getText().toString()) || mEmailField.getText().toString().equals("")){
                 mEmailField.setError("Enter a valid email address ,bro");
             }
         }
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(mPasswordField.getText().length() < 8 ){
+            if(mPasswordField.getText().length() < 8 || mPasswordField.getText().toString().equals("")){
                 mPasswordField.setError("Too short");
             }
         }
@@ -115,4 +116,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void OnLogin(View view){
+        if(mEmailField.getError() == null && mPasswordField.getError() == null
+                && !mEmailField.getText().toString().equals("") && !mPasswordField.getText().toString().equals("")) {
+            //if (mEmailField.getText().toString().equals("ghita@pentalog.ro") && mPasswordField.getText().toString().equals("123456789")) {
+                //Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_LONG).show();
+
+                String email = mEmailField.getText().toString();
+                String password = mPasswordField.getText().toString();
+                String type = "login";
+                BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+                backgroundWorker.execute(type, email, password);
+
+            //}
+        }
+    }
 }
