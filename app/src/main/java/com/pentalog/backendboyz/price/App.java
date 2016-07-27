@@ -8,7 +8,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +45,11 @@ public class App extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.activity_app);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbar.setTitle("");
 
 
         mLocationLabel = (TextView) findViewById(R.id.locationLabel);
@@ -165,5 +174,32 @@ public class App extends AppCompatActivity {
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(),"error_dialog");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater()
+                .inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuItem1 :
+                Toast.makeText(App.this, "TO BE IMPLEMENTED ...Someday (hopefully)", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menuItem2 :
+                Toast.makeText(App.this, "Made with <3", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menuItem3 :
+                Toast.makeText(App.this, "No ads till now. Blame the lazy developers", Toast.LENGTH_SHORT).show();
+                break;
+            default: break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
