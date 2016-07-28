@@ -49,8 +49,6 @@ public class App extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mToolbar.setTitle("");
-
 
         mLocationLabel = (TextView) findViewById(R.id.locationLabel);
         mCityLabel = (TextView) findViewById(R.id.cityLabel);
@@ -67,7 +65,7 @@ public class App extends AppCompatActivity {
                 mLatitude = location.getLatitude();
                 mLongitude = location.getLongitude();
                 mLocationLabel.setText(mLatitude+" , "+mLongitude);
-                String mApiUrl=" http://nominatim.openstreetmap.org/reverse?format=json&lat=" +mLatitude+ "&lon=" +mLongitude;
+                String mApiUrl="http://nominatim.openstreetmap.org/reverse?format=json&lat=" +mLatitude+ "&lon=" +mLongitude;
 
 
 //
