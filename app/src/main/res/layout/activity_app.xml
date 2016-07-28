@@ -6,30 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".App"
     android:background="#ffffff"
+
+    android:orientation="vertical"
 >
 
     <include layout="@layout/toolbar"
         android:id="@+id/myToolbar">
     </include>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/locationLabel"
-        android:layout_marginTop="89dp"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/cityLabel"
-        android:layout_below="@+id/locationLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:textSize="30sp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/itemList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:layout_weight="1"
+        />
 
 </RelativeLayout>
